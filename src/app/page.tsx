@@ -5,6 +5,9 @@ import { SurahMeta } from "@/lib/types";
 import { fetchSurahArabic } from "@/lib/api";
 import styles from "./page.module.css";
 
+// ISR: render on first visit, cache for 24 hours
+export const revalidate = 86400;
+
 // Fetch Arabic names for all surahs at build time
 async function getSurahNames(): Promise<
   Record<number, { arabicName: string; englishTranslation: string }>
@@ -14,34 +17,21 @@ async function getSurahNames(): Promise<
     { arabicName: string; englishTranslation: string }
   > = {};
 
-  // Fetch in batches of 10 to avoid overwhelming the API
+  // Fetch sequentially to avoid overwhelming the API during static generation
   const surahs = revelationOrder as SurahMeta[];
-  for (let i = 0; i < surahs.length; i += 10) {
-    const batch = surahs.slice(i, i + 10);
-    const results = await Promise.all(
-      batch.map(async (s) => {
-        try {
-          const data = await fetchSurahArabic(s.surahNumber);
-          return {
-            surahNumber: s.surahNumber,
-            arabicName: data.name,
-            englishTranslation: data.englishNameTranslation,
-          };
-        } catch {
-          return {
-            surahNumber: s.surahNumber,
-            arabicName: "",
-            englishTranslation: s.name,
-          };
-        }
-      })
-    );
-    results.forEach((r) => {
-      names[r.surahNumber] = {
-        arabicName: r.arabicName,
-        englishTranslation: r.englishTranslation,
+  for (const s of surahs) {
+    try {
+      const data = await fetchSurahArabic(s.surahNumber);
+      names[s.surahNumber] = {
+        arabicName: data.name,
+        englishTranslation: data.englishNameTranslation,
       };
-    });
+    } catch {
+      names[s.surahNumber] = {
+        arabicName: "",
+        englishTranslation: s.name,
+      };
+    }
   }
 
   return names;

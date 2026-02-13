@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
@@ -35,10 +36,10 @@ export default function Navbar() {
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
-        <a href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo}>
           <span className={styles.logoIcon}>☪</span>
           <span className={styles.logoText}>Ordered Quran</span>
-        </a>
+        </Link>
 
         <div className={styles.actions}>
           <button

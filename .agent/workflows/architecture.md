@@ -9,7 +9,7 @@ description: Project architecture and codebase map for the Ordered Quran website
 - **Framework**: Next.js 15 (App Router) with TypeScript
 - **Styling**: CSS Modules + CSS Custom Properties (no SCSS/Tailwind)
 - **Theming**: `next-themes` with `data-theme` attribute
-- **Data**: alquran.cloud REST API (fetched at build time via SSG)
+- **Data**: alquran.cloud REST API (fetched on-demand with ISR caching)
 - **Package Manager**: pnpm
 - **Deployment**: Vercel
 
@@ -50,13 +50,15 @@ orderedquran/
 
 ```
 1. Build time:
-   revelation-order.json → generateStaticParams() → 114 routes
+   revelation-order.json → defines all surah metadata
+   No API calls — build completes instantly
 
-2. For each surah page:
+2. First visit to a surah page:
    api.ts → alquran.cloud/v1/surah/{number} → Arabic + English text
+   Page is server-rendered and cached (ISR, revalidate: 24h)
 
-3. Result:
-   114 static HTML pages, zero runtime API calls
+3. Subsequent visits:
+   Served from cache until revalidation window expires
 ```
 
 ## Key Patterns
@@ -70,7 +72,7 @@ orderedquran/
 ### Routing Pattern
 
 - `/` → Home page (server component, fetches all surah names at build)
-- `/surah/[order]` → Surah reader (server component, `order` = revelation order 1–114)
+- `/surah/[order]` → Surah reader (server component, ISR, `order` = revelation order 1–114)
 - Navigation: prev/next uses revelation order, NOT surah number
 
 ### Styling Pattern

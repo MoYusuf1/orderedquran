@@ -48,10 +48,10 @@ GET /edition?language=en&type=translation
 
 ## Data Flow
 
-1. **Build time**: `generateStaticParams()` iterates over all 114 entries in `revelation-order.json`
-2. For each surah, call `/surah/{surahNumber}/editions/quran-uthmani,en.sahih`
-3. Parse the response and pass to the page component via `getStaticProps` / server component
-4. Pages are pre-rendered as static HTML — zero API calls at runtime
+1. **First visit**: When a user visits a surah page, the server fetches from `/surah/{surahNumber}/editions/quran-uthmani,en.sahih`
+2. The page is server-rendered and cached via ISR (revalidate: 24 hours)
+3. Subsequent visitors receive the cached page until the revalidation window expires
+4. **No API calls happen at build time** — the build completes instantly
 
 ## Response Shape
 
@@ -88,14 +88,16 @@ GET /edition?language=en&type=translation
 
 ## Caching Strategy
 
-- All data is fetched at **build time only** (SSG)
-- If the API is down during build, the build fails — add retry logic:
+- Data is fetched **on-demand at runtime** with ISR (Incremental Static Regeneration)
+- `revalidate = 86400` (24 hours) — pages regenerate after this interval
+- `fetch()` calls use `{ next: { revalidate: 86400 } }` for Next.js fetch cache
+- If the API is down, retry logic in `fetchWithRetry` handles transient failures:
   ```typescript
   async function fetchWithRetry(url: string, retries = 3): Promise<Response> {
     for (let i = 0; i < retries; i++) {
-      const res = await fetch(url);
+      const res = await fetch(url, { next: { revalidate: 86400 } });
       if (res.ok) return res;
-      await new Promise((r) => setTimeout(r, 1000 * (i + 1)));
+      await new Promise((r) => setTimeout(r, 2000 * (i + 1)));
     }
     throw new Error(`Failed to fetch ${url} after ${retries} retries`);
   }

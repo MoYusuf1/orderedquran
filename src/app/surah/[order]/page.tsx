@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import revelationOrder from "@/data/revelation-order.json";
 import { SurahMeta } from "@/lib/types";
@@ -7,11 +8,9 @@ import styles from "./page.module.css";
 
 const surahs = revelationOrder as SurahMeta[];
 
-export function generateStaticParams() {
-  return surahs.map((s) => ({
-    order: String(s.revelationOrder),
-  }));
-}
+// ISR: render on first visit, cache for 24 hours
+export const revalidate = 86400;
+export const dynamicParams = true;
 
 export async function generateMetadata({
   params,
@@ -103,24 +102,24 @@ export default async function SurahPage({
         {/* Navigation */}
         <nav className={styles.navigation}>
           {prev ? (
-            <a
+            <Link
               href={`/surah/${prev.revelationOrder}`}
               className={styles.navButton}
             >
               <span className={styles.navDirection}>← Previous</span>
               <span className={styles.navName}>{prev.name}</span>
-            </a>
+            </Link>
           ) : (
             <div />
           )}
           {next ? (
-            <a
+            <Link
               href={`/surah/${next.revelationOrder}`}
               className={`${styles.navButton} ${styles.navNext}`}
             >
               <span className={styles.navDirection}>Next →</span>
               <span className={styles.navName}>{next.name}</span>
-            </a>
+            </Link>
           ) : (
             <div />
           )}
