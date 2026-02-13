@@ -1,0 +1,249 @@
+/* =============================================
+   ORDERED QURAN — GLOBAL STYLES
+   Design tokens from quran.com's design system
+   ============================================= */
+
+/* Font Faces */
+@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+/* ===== THEME TOKENS ===== */
+:root {
+  /* Spacing */
+  --spacing-xxsmall: 0.375rem;
+  --spacing-xsmall: 0.625rem;
+  --spacing-small: 0.8125rem;
+  --spacing-medium: 1rem;
+  --spacing-medium2: 1.25rem;
+  --spacing-large: 1.5rem;
+  --spacing-mega: 2rem;
+  --spacing-max: 3rem;
+
+  /* Font Sizes */
+  --font-size-xsmall: 0.75rem;
+  --font-size-small: 0.875rem;
+  --font-size-normal: 1rem;
+  --font-size-large: 1.125rem;
+  --font-size-xlarge: 1.5rem;
+  --font-size-jumbo: 2rem;
+
+  /* Font Weights */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Font Families */
+  --font-family-ui:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-family-arabic: "Amiri", "Traditional Arabic", serif;
+
+  /* Border Radius */
+  --border-radius-default: 0.5rem;
+  --border-radius-small: 0.375rem;
+  --border-radius-large: 1rem;
+  --border-radius-pill: 20rem;
+  --border-radius-circle: 50%;
+
+  /* Transitions */
+  --transition-fast: 0.16s ease;
+  --transition-moderate: 0.2s ease;
+  --transition-regular: 0.4s ease;
+
+  /* Z-Index */
+  --z-index-sticky: 300;
+  --z-index-header: 400;
+  --z-index-overlay: 500;
+  --z-index-modal: 800;
+
+  /* Layout */
+  --max-content-width: 1200px;
+  --max-reading-width: 820px;
+  --navbar-height: 64px;
+}
+
+/* ===== LIGHT THEME (Default) ===== */
+:root,
+[data-theme="light"] {
+  --color-background: #ffffff;
+  --color-background-secondary: #f8f9fa;
+  --color-background-card: #ffffff;
+  --color-background-hover: #f4f5f6;
+
+  --color-text-primary: #272727;
+  --color-text-secondary: #666666;
+  --color-text-tertiary: #999999;
+  --color-text-inverse: #ffffff;
+
+  --color-accent: #2ca4ab;
+  --color-accent-hover: #258c91;
+  --color-accent-faded: #ebf9fa;
+  --color-accent-faint: #c2edef;
+
+  --color-meccan: #2ca4ab;
+  --color-meccan-bg: #ebf9fa;
+  --color-medinan: #ab570a;
+  --color-medinan-bg: #fef3dc;
+
+  --color-border: #ebeef0;
+  --color-border-light: #f4f5f6;
+  --color-separator: #f8f9fa;
+
+  --shadow-card: 0px 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0px 8px 24px rgba(0, 0, 0, 0.08);
+  --shadow-nav: 0px 1px 0px rgba(0, 0, 0, 0.06);
+  --shadow-surah-header: 0px 0px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== DARK THEME ===== */
+[data-theme="dark"] {
+  --color-background: #121417;
+  --color-background-secondary: #1a1d21;
+  --color-background-card: #1e2126;
+  --color-background-hover: #282c32;
+
+  --color-text-primary: #e7e9ea;
+  --color-text-secondary: #9ba1a8;
+  --color-text-tertiary: #6b7280;
+  --color-text-inverse: #000000;
+
+  --color-accent: #2ca4ab;
+  --color-accent-hover: #38bec6;
+  --color-accent-faded: #1a2e30;
+  --color-accent-faint: #1e3a3c;
+
+  --color-meccan: #38bec6;
+  --color-meccan-bg: #1a2e30;
+  --color-medinan: #f7b955;
+  --color-medinan-bg: #2e2517;
+
+  --color-border: #2d3139;
+  --color-border-light: #23272d;
+  --color-separator: #1a1d21;
+
+  --shadow-card: 0px 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0px 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-nav: 0px 1px 0px rgba(255, 255, 255, 0.06);
+  --shadow-surah-header: 0px 0px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== SEPIA THEME ===== */
+[data-theme="sepia"] {
+  --color-background: #f4ecd8;
+  --color-background-secondary: #ebe3cf;
+  --color-background-card: #f4ecd8;
+  --color-background-hover: #e8dfc9;
+
+  --color-text-primary: #3e3226;
+  --color-text-secondary: #6b5d4f;
+  --color-text-tertiary: #8c7d6d;
+  --color-text-inverse: #f4ecd8;
+
+  --color-accent: #2ca4ab;
+  --color-accent-hover: #258c91;
+  --color-accent-faded: #dff0f0;
+  --color-accent-faint: #c2e6e8;
+
+  --color-meccan: #2ca4ab;
+  --color-meccan-bg: #dff0f0;
+  --color-medinan: #ab570a;
+  --color-medinan-bg: #f0e6d0;
+
+  --color-border: #d6cbb5;
+  --color-border-light: #e0d6c2;
+  --color-separator: #ebe3cf;
+
+  --shadow-card: 0px 1px 3px rgba(62, 50, 38, 0.08);
+  --shadow-card-hover: 0px 8px 24px rgba(62, 50, 38, 0.1);
+  --shadow-nav: 0px 1px 0px rgba(62, 50, 38, 0.08);
+  --shadow-surah-header: 0px 0px 30px rgba(62, 50, 38, 0.08);
+}
+
+/* ===== RESET & BASE ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-family-ui);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  transition:
+    background-color var(--transition-moderate),
+    color var(--transition-moderate);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-accent-hover);
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--border-radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-tertiary);
+}
+
+/* ===== UTILITY CLASSES ===== */
+.container {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-medium2);
+}
+
+.reading-container {
+  max-width: var(--max-reading-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-medium2);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Arabic text base styles */
+.arabic-text {
+  font-family: var(--font-family-arabic);
+  direction: rtl;
+  text-align: right;
+  line-height: 2.4;
+  unicode-bidi: isolate;
+}

@@ -1,0 +1,186 @@
+.main {
+  min-height: calc(100vh - var(--navbar-height));
+}
+
+/* Surah Header */
+.surahHeader {
+  padding: var(--spacing-mega) var(--spacing-medium2);
+  text-align: center;
+  background: linear-gradient(
+    180deg,
+    var(--color-accent-faded) 0%,
+    var(--color-background) 100%
+  );
+}
+
+.headerContent {
+  max-width: var(--max-reading-width);
+  margin: 0 auto;
+}
+
+.orderBadge {
+  display: inline-block;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+  background: var(--color-background-card);
+  padding: 4px 16px;
+  border-radius: var(--border-radius-pill);
+  border: 1px solid var(--color-accent-faint);
+  margin-bottom: var(--spacing-small);
+}
+
+.surahName {
+  font-size: clamp(1.5rem, 4vw, var(--font-size-jumbo));
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xxsmall);
+}
+
+.arabicTitle {
+  font-family: var(--font-family-arabic);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: var(--color-text-primary);
+  direction: rtl;
+  margin-bottom: var(--spacing-xsmall);
+  line-height: 1.8;
+}
+
+.surahMeta {
+  font-size: var(--font-size-normal);
+  color: var(--color-text-secondary);
+}
+
+.meccan {
+  color: var(--color-meccan);
+  font-weight: var(--font-weight-medium);
+}
+
+.medinan {
+  color: var(--color-medinan);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Bismillah */
+.bismillah {
+  font-family: var(--font-family-arabic);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  text-align: center;
+  color: var(--color-accent);
+  padding: var(--spacing-large) var(--spacing-medium2);
+  direction: rtl;
+  line-height: 2;
+  border-bottom: 1px solid var(--color-border);
+  max-width: var(--max-reading-width);
+  margin: 0 auto;
+}
+
+/* Verses */
+.verses {
+  max-width: var(--max-reading-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-medium2);
+}
+
+.verse {
+  display: flex;
+  gap: var(--spacing-medium);
+  padding: var(--spacing-large) 0;
+  border-bottom: 1px solid var(--color-border-light);
+  transition: background-color var(--transition-fast);
+}
+
+.verse:hover {
+  background: var(--color-background-hover);
+  margin: 0 calc(-1 * var(--spacing-medium2));
+  padding-left: var(--spacing-medium2);
+  padding-right: var(--spacing-medium2);
+  border-radius: var(--border-radius-default);
+}
+
+.verseNumber {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-faded);
+  color: var(--color-accent);
+  border-radius: var(--border-radius-circle);
+  font-size: var(--font-size-xsmall);
+  font-weight: var(--font-weight-semibold);
+  margin-top: 4px;
+}
+
+.verseContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.arabicText {
+  font-family: var(--font-family-arabic);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  direction: rtl;
+  text-align: right;
+  line-height: 2.4;
+  color: var(--color-text-primary);
+  unicode-bidi: isolate;
+  margin-bottom: var(--spacing-small);
+  word-spacing: 0.05em;
+}
+
+.translationText {
+  font-size: var(--font-size-normal);
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+/* Navigation */
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: var(--spacing-medium);
+  max-width: var(--max-reading-width);
+  margin: 0 auto;
+  padding: var(--spacing-mega) var(--spacing-medium2);
+}
+
+.navButton {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--spacing-medium) var(--spacing-medium2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-default);
+  text-decoration: none;
+  transition: border-color var(--transition-fast),
+              background-color var(--transition-fast),
+              transform var(--transition-fast);
+  min-width: 140px;
+}
+
+.navButton:hover {
+  border-color: var(--color-accent-faint);
+  background: var(--color-accent-faded);
+  transform: translateY(-1px);
+}
+
+.navNext {
+  text-align: right;
+  margin-left: auto;
+}
+
+.navDirection {
+  font-size: var(--font-size-xsmall);
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.navName {
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent);
+}
