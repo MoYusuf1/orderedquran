@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { Figtree, Amiri } from "next/font/google";
 import "./globals.css";
 
@@ -17,12 +18,15 @@ const amiri = Amiri({
 });
 
 export default function GlobalError({
-  error: _error,
+  error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
   return (
     <html lang="en" className={`${figtree.variable} ${amiri.variable}`}>
       <body>
