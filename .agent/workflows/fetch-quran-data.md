@@ -108,3 +108,19 @@ GET /edition?language=en&type=translation
 1. Find the edition identifier: `GET /edition?language={lang}&type=translation`
 2. Add the edition to the `fetchSurahBilingual` function
 3. Rebuild the site: `npm run build`
+
+## Text Processing Best Practices
+
+### Handling Uthmani Text
+
+The Uthmani script returned by the API is highly specific and decorative.
+
+1.  **Sanitize Inputs**: Always strip Byte Order Marks (BOM) and whitespace:
+    ```typescript
+    const cleanText = rawText.replace(/^\ufeff/, "").trim();
+    ```
+2.  **Avoid Brittle Regex**: Do not match specific diacritics (like Sukun or Shadda) in regex unless necessary. Normalization varies (e.g. `\u06E1` vs `\u0652`).
+3.  **Bismillah Extraction**: To extract the Bismillah from the first verse:
+    - **Do NOT** use a regex match.
+    - **DO** split by space and take the first 4 words: "Bismi Allahi Ar-Rahmani Ar-Rahimi".
+    - **Exception**: Explicitly exclude Surah 1 (Al-Fatihah) and Surah 9 (At-Tawbah). Surah 9 has no Bismillah; Surah 1 _is_ the Bismillah context.

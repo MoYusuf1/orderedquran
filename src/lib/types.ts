@@ -24,6 +24,7 @@ export interface SurahData {
   revelationType: string;
   numberOfAyahs: number;
   ayahs: Ayah[];
+  bismillahPre?: string;
 }
 
 export interface ApiResponse<T> {

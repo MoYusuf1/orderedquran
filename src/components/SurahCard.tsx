@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { SurahMeta } from "@/lib/types";
 import styles from "./SurahCard.module.css";
 
@@ -13,7 +14,7 @@ export default function SurahCard({
   englishTranslation,
 }: SurahCardProps) {
   return (
-    <a href={`/surah/${surah.revelationOrder}`} className={styles.card}>
+    <Link href={`/surah/${surah.revelationOrder}`} className={styles.card}>
       <div className={styles.header}>
         <div className={styles.numberBadge}>
           <span className={styles.number}>{surah.revelationOrder}</span>
@@ -39,6 +40,6 @@ export default function SurahCard({
           {surah.revelationPlace}
         </span>
       </div>
-    </a>
+    </Link>
   );
 }

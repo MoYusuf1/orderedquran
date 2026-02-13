@@ -1,0 +1,38 @@
+﻿   Γû▓ Next.js 15.5.12
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully in 2.2s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/6) ...
+node.exe : Error occurred prerendering 
+page "/_not-found". Read more: https://n
+extjs.org/docs/messages/prerender-error
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" 
+"C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecif 
+   ied: (Error occurred ...prerender-e  
+  rror:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCom 
+   mandError
+ 
+Error: Event handlers cannot be passed 
+to Client Component props.
+  {rel: ..., href: ..., media: "print", 
+onLoad: function onLoad}
+                                        
+        ^^^^^^^^^^^^^^^
+If you need interactivity, consider 
+converting part of this to a Client 
+Component.
+    at stringify (<anonymous>) {
+  digest: '1321504473'
+}
+Export encountered an error on 
+/_not-found/page: /_not-found, exiting 
+the build.
+ Γ¿» Next.js build worker exited with 
+code: 1 and signal: null

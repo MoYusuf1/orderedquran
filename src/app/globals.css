@@ -1,11 +1,9 @@
 /* =============================================
    ORDERED QURAN — GLOBAL STYLES
    Design tokens from quran.com's design system
+   Fonts loaded via next/font (see layout.tsx)
    ============================================= */
 
-/* Font Faces */
-@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 
 /* ===== THEME TOKENS ===== */
 :root {
@@ -28,6 +26,7 @@
   --font-size-jumbo: 2rem;
 
   /* Font Weights */
+  --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
@@ -35,8 +34,8 @@
 
   /* Font Families */
   --font-family-ui:
-    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-family-arabic: "Amiri", "Traditional Arabic", serif;
+    var(--font-figtree), "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-family-arabic: "KFGQPCUthmanicScriptHAFS", var(--font-amiri), "Amiri", "Traditional Arabic", serif;
 
   /* Border Radius */
   --border-radius-default: 0.5rem;
@@ -59,7 +58,8 @@
   /* Layout */
   --max-content-width: 1200px;
   --max-reading-width: 820px;
-  --navbar-height: 64px;
+  --navbar-height: 60px;
+  --sidebar-width: 300px;
 }
 
 /* ===== LIGHT THEME (Default) ===== */
@@ -89,23 +89,28 @@
   --color-border-light: #f4f5f6;
   --color-separator: #f8f9fa;
 
+  --color-highlight: rgba(44, 164, 171, 0.2);
+
   --shadow-card: 0px 1px 3px rgba(0, 0, 0, 0.06);
   --shadow-card-hover: 0px 8px 24px rgba(0, 0, 0, 0.08);
   --shadow-nav: 0px 1px 0px rgba(0, 0, 0, 0.06);
   --shadow-surah-header: 0px 0px 30px rgba(0, 0, 0, 0.06);
+
+  --scrollbar-thumb: #d1d5db;
+  --scrollbar-thumb-hover: #9ca3af;
 }
 
 /* ===== DARK THEME ===== */
 [data-theme="dark"] {
-  --color-background: #121417;
-  --color-background-secondary: #1a1d21;
-  --color-background-card: #1e2126;
-  --color-background-hover: #282c32;
+  --color-background: #1f2125;
+  --color-background-secondary: #282c32;
+  --color-background-card: #282c32;
+  --color-background-hover: #32363d;
 
   --color-text-primary: #e7e9ea;
   --color-text-secondary: #9ba1a8;
   --color-text-tertiary: #6b7280;
-  --color-text-inverse: #000000;
+  --color-text-inverse: #1f2125;
 
   --color-accent: #2ca4ab;
   --color-accent-hover: #38bec6;
@@ -117,14 +122,19 @@
   --color-medinan: #f7b955;
   --color-medinan-bg: #2e2517;
 
-  --color-border: #2d3139;
-  --color-border-light: #23272d;
-  --color-separator: #1a1d21;
+  --color-border: #3a3f47;
+  --color-border-light: #2d3139;
+  --color-separator: #282c32;
+
+  --color-highlight: rgba(44, 164, 171, 0.25);
 
   --shadow-card: 0px 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-card-hover: 0px 8px 24px rgba(0, 0, 0, 0.4);
   --shadow-nav: 0px 1px 0px rgba(255, 255, 255, 0.06);
   --shadow-surah-header: 0px 0px 30px rgba(0, 0, 0, 0.3);
+
+  --scrollbar-thumb: #4b5563;
+  --scrollbar-thumb-hover: #6b7280;
 }
 
 /* ===== SEPIA THEME ===== */
@@ -153,10 +163,52 @@
   --color-border-light: #e0d6c2;
   --color-separator: #ebe3cf;
 
+  --color-highlight: rgba(44, 164, 171, 0.2);
+
   --shadow-card: 0px 1px 3px rgba(62, 50, 38, 0.08);
   --shadow-card-hover: 0px 8px 24px rgba(62, 50, 38, 0.1);
   --shadow-nav: 0px 1px 0px rgba(62, 50, 38, 0.08);
   --shadow-surah-header: 0px 0px 30px rgba(62, 50, 38, 0.08);
+
+  --scrollbar-thumb: #c4b89e;
+  --scrollbar-thumb-hover: #a89a80;
+}
+
+/* ===== AMOLED THEME ===== */
+[data-theme="amoled"] {
+  --color-background: #000000;
+  --color-background-secondary: #0a0a0a;
+  --color-background-card: #111111;
+  --color-background-hover: #1a1a1a;
+
+  --color-text-primary: #e7e9ea;
+  --color-text-secondary: #9ba1a8;
+  --color-text-tertiary: #6b7280;
+  --color-text-inverse: #000000;
+
+  --color-accent: #2ca4ab;
+  --color-accent-hover: #38bec6;
+  --color-accent-faded: #0d1f20;
+  --color-accent-faint: #132a2c;
+
+  --color-meccan: #38bec6;
+  --color-meccan-bg: #0d1f20;
+  --color-medinan: #f7b955;
+  --color-medinan-bg: #1a1508;
+
+  --color-border: #222222;
+  --color-border-light: #1a1a1a;
+  --color-separator: #0a0a0a;
+
+  --color-highlight: rgba(44, 164, 171, 0.25);
+
+  --shadow-card: none;
+  --shadow-card-hover: 0px 0px 1px rgba(255, 255, 255, 0.1);
+  --shadow-nav: 0px 1px 0px rgba(255, 255, 255, 0.04);
+  --shadow-surah-header: none;
+
+  --scrollbar-thumb: #333333;
+  --scrollbar-thumb-hover: #4b5563;
 }
 
 /* ===== RESET & BASE ===== */
@@ -169,8 +221,12 @@
 }
 
 html {
-  font-size: 16px;
-  scroll-behavior: smooth;
+  font-size: 20px;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
   -webkit-text-size-adjust: 100%;
 }
 
@@ -178,12 +234,14 @@ body {
   font-family: var(--font-family-ui);
   background-color: var(--color-background);
   color: var(--color-text-primary);
-  line-height: 1.6;
+  line-height: 1.354;
+  min-block-size: 100vh;
   transition:
     background-color var(--transition-moderate),
     color var(--transition-moderate);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
 }
 
 a {
@@ -196,22 +254,50 @@ a:hover {
   color: var(--color-accent-hover);
 }
 
+/* ===== SELECTION ===== */
+::selection {
+  background: var(--color-highlight);
+}
+
+body ::selection {
+  background: var(--color-highlight);
+}
+
 /* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-background-secondary);
+  background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: var(--border-radius-pill);
+  background-color: var(--scrollbar-thumb);
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-tertiary);
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+/* ===== LAYOUT ===== */
+.appLayout {
+  display: flex;
+  min-height: calc(100vh - var(--navbar-height));
+}
+
+.mainContent {
+  flex: 1;
+  min-width: 0;
+  transition: margin-left var(--transition-regular);
+}
+
+@media (min-width: 1024px) {
+  .mainContent.sidebarOpen {
+    margin-left: var(--sidebar-width);
+  }
 }
 
 /* ===== UTILITY CLASSES ===== */
@@ -246,4 +332,24 @@ a:hover {
   text-align: right;
   line-height: 2.4;
   unicode-bidi: isolate;
+}
+
+/* Skip Link (visible on focus) */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--color-accent);
+  color: white;
+  padding: 8px 16px;
+  z-index: 9999;
+  transition: top 0.2s ease;
+  font-weight: bold;
+  border-radius: 0 0 8px 0;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--color-accent-hover);
 }

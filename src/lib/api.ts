@@ -26,6 +26,23 @@ export async function fetchSurahArabic(
 ): Promise<SurahData> {
   const res = await fetchWithRetry(`${BASE_URL}/surah/${surahNumber}`);
   const json = await res.json();
+
+  /* 
+    Extract Bismillah from the first verse of all surahs except Al-Fatihah (1).
+    We use a robust word-splitting strategy (first 4 words) instead of brittle Regex.
+    See docs/data-handling.md for details.
+  */
+  if (surahNumber !== 1 && surahNumber !== 9 && json.data.ayahs.length > 0) {
+    // Robust extraction: Bismillah is always the first 4 words.
+    // "Bismi Allahi Ar-Rahmani Ar-Rahimi"
+    const firstVerse = json.data.ayahs[0].text;
+    const parts = firstVerse.split(" ");
+    if (parts.length >= 4) {
+        json.data.bismillahPre = parts.slice(0, 4).join(" ").trim();
+        json.data.ayahs[0].text = parts.slice(4).join(" ").trim();
+    }
+  }
+
   return json.data as SurahData;
 }
 

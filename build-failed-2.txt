@@ -1,0 +1,30 @@
+﻿   Γû▓ Next.js 15.5.12
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully in 1327ms
+   Linting and checking validity of types ...
+node.exe : 
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" 
+"C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: 
+    (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommand 
+   Error
+ 
+Failed to compile.
+
+./src/app/error.tsx
+23:48  Error: `'` can be escaped with 
+`&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`.  
+react/no-unescaped-entities
+
+./src/app/global-error.tsx
+20:3  Warning: 'error' is defined but never 
+used.  @typescript-eslint/no-unused-vars
+
+info  - Need to disable some ESLint rules? 
+Learn more here: https://nextjs.org/docs/app
+/api-reference/config/eslint#disabling-rules

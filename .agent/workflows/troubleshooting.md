@@ -155,4 +155,30 @@ cmd /c "npm install -g pnpm"
 ### ❌ Verse text appears duplicated
 
 **Cause**: Some API responses include Bismillah in verse 1 text.
-**Fix**: This is expected behavior for most surahs. The separate Bismillah display is cosmetic.
+**Fix**: This is expected behavior for most surahs. The separation is cosmetic.
+
+### ❌ Regex matches fail on seemingly identical text
+
+**Cause**: Invisible characters or Unicode normalization differences.
+
+- **Byte Order Mark (BOM)**: API responses may start with `\ufeff`. This breaks regex anchors like `^`.
+- **Normalization**: "Sukun" might be `\u0652` (standard) or `\u06E1` (Quranic). "Alif" might vary.
+
+**Fix**:
+
+1. **Sanitize First**: `text.replace(/^\ufeff/, '').trim()`
+2. **Debug Bytes**: Log the string character codes to see what's really there:
+   ```javascript
+   console.log(
+     str
+       .split("")
+       .map((c) => "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0"))
+       .join(""),
+   );
+   ```
+3. **Use Heuristics**: tailored regexes are brittle. Use structural checks (e.g., "First 4 words") where possible.
+
+### ❌ Surah Tawbah (9) header issues
+
+**Cause**: Surah 9 does NOT start with Bismillah.
+**Fix**: Always exclude `surahNumber === 9` from any Bismillah-related logic.
